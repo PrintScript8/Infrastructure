@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  parser:
+    image: ghcr.io/printscript8/parser-dev:latest@sha256:99b364f0e6bf3025254e93974e5428c699c09781a8894aa9a68d33712a6ca64b
+    container_name: parser
+    ports:
+      - "8081:8080"
+    environment:
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}

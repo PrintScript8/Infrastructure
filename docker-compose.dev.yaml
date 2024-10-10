@@ -17,25 +17,8 @@ services:
     ports:
       - "8082:8080"
     environment:
-      DB_USER: ${SNIPPETS_USER}
-      DB_PASSWORD: ${SNIPPETS_PASSWORD}
-      DB_NAME: ${SNIPPETS_NAME}
-      DB_HOST: ${SNIPPETS_HOST}
-      DB_PORT: ${SNIPPETS_PORT}
-    depends_on:
-      - snippets_db
-
-  snippets_db:
-    image: postgres:14
-    container_name: snippets_db
-    ports:
-      - "${SNIPPETS_PORT}:5432"
-    environment:
-      POSTGRES_USER: ${SNIPPETS_USER}
-      POSTGRES_PASSWORD: ${SNIPPETS_PASSWORD}
-      POSTGRES_DB: ${SNIPPETS_NAME}
-    volumes:
-      - pgdata_snippets:/var/lib/postgresql/data
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   permissions:
     image: ghcr.io/printscript8/permissions-dev:latest@sha256:9a38916d7338185209444609c51ada58ec04d5ad1f0d847e564e6a7e922367d1
@@ -43,26 +26,5 @@ services:
     ports:
       - "8083:8080"
     environment:
-      DB_USER: ${PERMISSIONS_USER}
-      DB_PASSWORD: ${PERMISSIONS_PASSWORD}
-      DB_NAME: ${PERMISSIONS_NAME}
-      DB_HOST: ${PERMISSIONS_HOST}
-      DB_PORT: ${PERMISSIONS_PORT}
-    depends_on:
-      - permissions_db
-
-  permissions_db:
-    image: postgres:14
-    container_name: permissions_db
-    ports:
-      - "${PERMISSIONS_PORT}:5432"
-    environment:
-      POSTGRES_USER: ${PERMISSIONS_USER}
-      POSTGRES_PASSWORD: ${PERMISSIONS_PASSWORD}
-      POSTGRES_DB: ${PERMISSIONS_NAME}
-    volumes:
-      - pgdata_permissions:/var/lib/postgresql/data
-
-volumes:
-  pgdata_snippets:
-  pgdata_permissions:
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}

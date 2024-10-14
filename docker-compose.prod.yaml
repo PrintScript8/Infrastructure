@@ -2,17 +2,23 @@ version: '3.8'
 
 services:
   parser:
-    image: //url/a/parser_image
+    image: ghcr.io/printscript8/parser:latest@sha256:ff1529b3057a810904d810fb034e6eb09c6b43821b46568d119e5c6e4bd84daf
     container_name: parser
     ports:
       - "8081:8080"
+    environment:
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   snippets:
-    image: //url/a/snippets_image
+    image: ghcr.io/printscript8/snippet:latest@sha256:c84a9acbc9411aa6aa2d2eef23298eea3e83b86d5d1083f1e2370549e0658985
     container_name: snippets
     ports:
       - "8082:8080"
     environment:
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+
       DB_USER: ${SNIPPETS_USER}
       DB_PASSWORD: ${SNIPPETS_PASSWORD}
       DB_NAME: ${SNIPPETS_NAME}
@@ -34,16 +40,19 @@ services:
       - pgdata_snippets:/var/lib/postgresql/data
 
   permissions:
-    image: //url/a/permissions_image
+    image: ghcr.io/printscript8/permissions:latest@sha256:7d01b8e81272499ec5e26aedbe1b7c7540cec075a403f8df24dfc89df55c3e36
     container_name: permissions
     ports:
       - "8083:8080"
     environment:
-        DB_USER: ${PERMISSIONS_USER}
-        DB_PASSWORD: ${PERMISSIONS_PASSWORD}
-        DB_NAME: ${PERMISSIONS_NAME}
-        DB_HOST: ${PERMISSIONS_HOST}
-        DB_PORT: ${PERMISSIONS_PORT}
+      GITHUB_ACTOR: ${GITHUB_ACTOR}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+
+      DB_USER: ${PERMISSIONS_USER}
+      DB_PASSWORD: ${PERMISSIONS_PASSWORD}
+      DB_NAME: ${PERMISSIONS_NAME}
+      DB_HOST: ${PERMISSIONS_HOST}
+      DB_PORT: ${PERMISSIONS_PORT}
     depends_on:
       - permissions_db
 

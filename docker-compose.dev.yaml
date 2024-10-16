@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   parser:
-    image: ghcr.io/printscript8/parser-dev:latest@sha256:99b364f0e6bf3025254e93974e5428c699c09781a8894aa9a68d33712a6ca64b
+    image: ghcr.io/printscript8/parser-dev:latest
     container_name: parser
     ports:
       - "8081:8080"
@@ -11,7 +9,7 @@ services:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   snippets:
-    image: ghcr.io/printscript8/snippet-dev:latest@sha256:fad5b128e799874fff7f5a19789640d40017bfa5635a432778465f37ea4ad99f
+    image: ghcr.io/printscript8/snippet-dev:latest
     container_name: snippets
     ports:
       - "8082:8080"
@@ -40,7 +38,7 @@ services:
       - pgdata_snippets:/var/lib/postgresql/data
 
   permissions:
-    image: ghcr.io/printscript8/permissions-dev:latest@sha256:9a38916d7338185209444609c51ada58ec04d5ad1f0d847e564e6a7e922367d1
+    image: ghcr.io/printscript8/permissions-dev:latest
     container_name: permissions
     ports:
       - "8083:8080"

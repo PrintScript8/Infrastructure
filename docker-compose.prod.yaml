@@ -5,7 +5,7 @@ services:
     image: ghcr.io/printscript8/parser:latest@sha256:ff1529b3057a810904d810fb034e6eb09c6b43821b46568d119e5c6e4bd84daf
     container_name: parser
     ports:
-      - "8081:8080"
+      - "8081:8081"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -14,7 +14,7 @@ services:
     image: ghcr.io/printscript8/snippet:latest@sha256:c84a9acbc9411aa6aa2d2eef23298eea3e83b86d5d1083f1e2370549e0658985
     container_name: snippets
     ports:
-      - "8082:8080"
+      - "8082:8082"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -43,7 +43,7 @@ services:
     image: ghcr.io/printscript8/permissions:latest@sha256:7d01b8e81272499ec5e26aedbe1b7c7540cec075a403f8df24dfc89df55c3e36
     container_name: permissions
     ports:
-      - "8083:8080"
+      - "8083:8083"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -60,7 +60,7 @@ services:
     image: postgres:14
     container_name: permissions_db
     ports:
-      - "${PERMISSIONS_PORT}:5432"
+      - "${PERMISSIONS_PORT}:5433"
     environment:
       POSTGRES_USER: ${PERMISSIONS_USER}
       POSTGRES_PASSWORD: ${PERMISSIONS_PASSWORD}

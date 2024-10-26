@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+
+  proxy:
+    container_name: "reverse-proxy-infra"
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d:ro
+
   parser:
     image: ghcr.io/printscript8/parser:latest@sha256:ff1529b3057a810904d810fb034e6eb09c6b43821b46568d119e5c6e4bd84daf
     container_name: parser

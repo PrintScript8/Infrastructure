@@ -1,9 +1,24 @@
 services:
+
+  proxy:
+    container_name: "reverse-proxy-infra"
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d:ro
+
+  ui:
+    container_name: "ui"
+    image: ghcr.io/printscript8/ui-dev:latest
+      #ports:
+    #  - "3000:80"
+
   parser:
     image: ghcr.io/printscript8/parser-dev:latest
     container_name: parser
-    ports:
-      - "8081:8081"
+    #ports:
+    #  - "8081:8081"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -11,8 +26,8 @@ services:
   snippets:
     image: ghcr.io/printscript8/snippet-dev:latest
     container_name: snippets
-    ports:
-      - "8082:8082"
+    #ports:
+     # - "8082:8082"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -40,8 +55,8 @@ services:
   permissions:
     image: ghcr.io/printscript8/permissions-dev:latest
     container_name: permissions
-    ports:
-      - "8083:8083"
+    #ports:
+     # - "8083:8083"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}

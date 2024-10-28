@@ -8,6 +8,12 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
 
+  ui:
+    container_name: "ui"
+    image: ghcr.io/printscript8/ui-dev:latest
+      #ports:
+    #  - "3000:80"
+
   parser:
     image: ghcr.io/printscript8/parser-dev:latest
     container_name: parser

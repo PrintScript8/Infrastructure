@@ -4,11 +4,11 @@ services:
     container_name: "reverse-proxy-infra"
     image: nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
       - ./well-known:/usr/share/nginx/html/.well-known:ro
+
 
   duckdns:
     image: lscr.io/linuxserver/duckdns:latest

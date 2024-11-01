@@ -9,7 +9,8 @@ services:
       - "8080:80"
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
-      - ./certificates/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
+      # - ./certificates/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
+      - ./certificates/ssl:/etc/nginx/ssl
 
 
   duckdns:

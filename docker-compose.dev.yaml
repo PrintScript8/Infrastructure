@@ -11,6 +11,19 @@ services:
       # - ./certificates/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
       - ./certificates/ssl:/etc/nginx/ssl
 
+  ui:
+    container_name: "ui"
+    image: ghcr.io/printscript8/ui-dev:latest
+      #ports:
+    #  - "3000:80"
+
+  authorization:
+    image: ghcr.io/printscript8/authorization-dev:latest
+    container_name: authorization
+    #ports:
+    #  - "8087:8087"
+    env_file:
+      - .env
 
   duckdns:
     image: lscr.io/linuxserver/duckdns:latest
@@ -21,12 +34,6 @@ services:
     volumes:
       - ./duckdns:/config
     restart: unless-stopped
-
-  ui:
-    container_name: "ui"
-    image: ghcr.io/printscript8/ui-dev:latest
-      #ports:
-    #  - "3000:80"
 
   parser:
     image: ghcr.io/printscript8/parser-dev:latest

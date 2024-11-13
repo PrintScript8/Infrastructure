@@ -10,6 +10,11 @@ services:
       - ./conf.d:/etc/nginx/conf.d:ro
       # - ./certificates/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
       - ./certificates/ssl:/etc/nginx/ssl
+    depends_on:
+      - ui
+      - snippets
+      - parser
+
 
   ui:
     container_name: "ui"
@@ -73,8 +78,8 @@ services:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       REDIS_HOST: event-bus
       REDIS_PORT: 6379
-      depends_on:
-        -redis
+    depends_on:
+      - redis
 
   snippets:
     image: ghcr.io/printscript8/snippet-dev:latest

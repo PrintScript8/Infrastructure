@@ -21,7 +21,7 @@ services:
     image: ghcr.io/printscript8/authorization-dev:latest
     container_name: authorization
     #ports:
-    #  - "8087:8087"
+    #  - "8087:8080"
     env_file:
       - .env
 
@@ -39,7 +39,7 @@ services:
     image: ghcr.io/printscript8/parser-dev:latest
     container_name: parser
     #ports:
-    #  - "8081:8081"
+    #  - "8081:8080"
     environment:
       GITHUB_ACTOR: ${GITHUB_ACTOR}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -64,8 +64,8 @@ services:
   snippets_db:
     image: postgres:14
     container_name: snippets_db
-    ports:
-      - "${SNIPPETS_PORT}:5432"
+  #  ports:
+  #    - "${SNIPPETS_PORT}:5432"
     environment:
       POSTGRES_USER: ${SNIPPETS_USER}
       POSTGRES_PASSWORD: ${SNIPPETS_PASSWORD}
@@ -93,8 +93,8 @@ services:
   permissions_db:
     image: postgres:14
     container_name: permissions_db
-    ports:
-      - "${PERMISSIONS_PORT}:5433"
+  #  ports:
+  #    - "${PERMISSIONS_PORT}:5432"
     environment:
       POSTGRES_USER: ${PERMISSIONS_USER}
       POSTGRES_PASSWORD: ${PERMISSIONS_PASSWORD}

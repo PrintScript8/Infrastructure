@@ -78,6 +78,7 @@ services:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       REDIS_HOST: event-bus
       REDIS_PORT: 6379
+      NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
     depends_on:
       - redis
 
@@ -95,6 +96,8 @@ services:
       DB_NAME: ${SNIPPETS_NAME}
       DB_HOST: ${SNIPPETS_HOST}
       DB_PORT: ${SNIPPETS_PORT}
+      NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+
     depends_on:
       - snippets_db
       - redis
@@ -125,6 +128,8 @@ services:
       DB_NAME: ${PERMISSIONS_NAME}
       DB_HOST: ${PERMISSIONS_HOST}
       DB_PORT: ${PERMISSIONS_PORT}
+      NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+
     depends_on:
       - permissions_db
       - authorization

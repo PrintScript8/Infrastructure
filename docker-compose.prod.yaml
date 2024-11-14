@@ -7,9 +7,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./conf.d:/etc/nginx/conf.d:ro
-      # - ./certificates/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
-      - ./certificates/ssl:/etc/nginx/ssl
+      - ./conf2.d:/etc/nginx/conf.d:ro
+      - ./certificates2/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
+      #- ./certificates2/ssl:/etc/nginx/ssl
     depends_on:
       - ui
       - snippets
@@ -62,7 +62,7 @@ services:
     image: lscr.io/linuxserver/duckdns:latest
     container_name: duckdns
     environment:
-      - SUBDOMAINS=snippet-searcher
+      - SUBDOMAINS=real-snippet-searcher
       - TOKEN=${DUCKDNS_TOKEN}
     volumes:
       - ./duckdns:/config

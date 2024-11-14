@@ -8,8 +8,8 @@ services:
       - "443:443"
     volumes:
       - ./conf2.d:/etc/nginx/conf.d:ro
-      - ./certificates2/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
-      #- ./certificates2/ssl:/etc/nginx/ssl
+      #- ./certificates2/validation:/usr/share/nginx/html/.well-known/pki-validation:ro
+      - ./certificates2/ssl:/etc/nginx/ssl
     depends_on:
       - ui
       - snippets
